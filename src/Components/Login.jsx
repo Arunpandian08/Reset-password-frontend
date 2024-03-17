@@ -39,7 +39,7 @@ const Login = () => {
     console.log("login payloads:", email,password);
     const payloads = {email, password };
     try {
-      const response = await axios.post('http://localhost:4000/user/login', payloads);
+      const response = await axios.post('https://reset-password-backend-x4pn.onrender.com/user/login', payloads);
       toast.success(response.data.msg, {
         position: "top-right",
         autoClose: 2000,

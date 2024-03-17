@@ -35,7 +35,7 @@ const ResetPassword = () => {
         const payloads = { email, newPassword, conformPassword };
         try {
             const response = await axios.post(
-                "http://localhost:4000/user/resetpassword",
+                "https://reset-password-backend-x4pn.onrender.com/user/resetpassword",
                 payloads
             );
             toast.success(response.data.msg, {

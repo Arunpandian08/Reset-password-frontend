@@ -33,7 +33,7 @@ const ForGet = () => {
         const payloads = { email };
         try {
             const response = await axios.post(
-                "http://localhost:4000/user/forgetpassword",
+                "https://reset-password-backend-x4pn.onrender.com/user/forgetpassword",
                 payloads
             );
             toast.success(response.data.msg, {

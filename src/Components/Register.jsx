@@ -31,7 +31,7 @@ const Register = () => {
     console.log("Register payloads:", userName, email, phoneNumber, password);
     const payloads = { userName, email, phoneNumber, password };
     try {
-      const response = await axios.post('http://localhost:4000/user/register', payloads);
+      const response = await axios.post('https://reset-password-backend-x4pn.onrender.com/user/register', payloads);
       toast.success(response.data.msg, {
         position: "top-right",
         autoClose: 3000,
