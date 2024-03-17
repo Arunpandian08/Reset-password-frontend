@@ -16,6 +16,9 @@ const ForGet = () => {
     const handleSignup = () => {
         navigate("/register");
     }
+    const handleRe = () => {
+        navigate("/resetpassword");
+    }
     
     const successNotificationSound = () => {
         const audio = new Audio(sound);
@@ -118,6 +121,10 @@ const ForGet = () => {
                     {" "}
                     Sign up now
                 </a>
+            </p>
+            <p className="signup-link">
+            Click For Reset Password
+            <a href="#"  className="signup-link link" onClick={handleRe}>{" "}Reset New password</a>
             </p>
         </div>
     );
