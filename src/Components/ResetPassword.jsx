@@ -36,7 +36,7 @@ const ResetPassword = () => {
 const validateToken = async () => {
     console.log("token checking");
             try {
-                const response = await axios.get(`http://localhost:4000/user/validate-token/${token}`);
+                const response = await axios.get(`https://reset-password-backend-x4pn.onrender.com/user/validate-token/${token}`);
                 if (response.data.valid) {
                     setTokenValid(true);
                 } else {
