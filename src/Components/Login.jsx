@@ -39,7 +39,7 @@ const Login = () => {
     console.log("login payloads:", email,password);
     const payloads = {email, password };
     try {
-      const response = await axios.post('https://reset-password-backend-x4pn.onrender.com/user/login', payloads);
+      const response = await axios.post('http://localhost:4000/user/login', payloads);
       toast.success(response.data.msg, {
         position: "top-right",
         autoClose: 2000,
@@ -77,7 +77,7 @@ const Login = () => {
       <form className="login" onSubmit={handleSubmit}>
         <div className="form bg-dark text-white">
           <h2 className="log-title p-3">Welcome back to App</h2>
-          <p className="para">Log in to your account</p>
+          <p className="para m-5">Log in to your account</p>
           <hr />
           <div className="col">
             <div className="row g-3 p-3 ">

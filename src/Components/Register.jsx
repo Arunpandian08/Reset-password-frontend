@@ -31,7 +31,7 @@ const Register = () => {
     console.log("Register payloads:", userName, email, phoneNumber, password);
     const payloads = { userName, email, phoneNumber, password };
     try {
-      const response = await axios.post('https://reset-password-backend-x4pn.onrender.com/user/register', payloads);
+      const response = await axios.post('http://localhost:4000/user/register', payloads);
       toast.success(response.data.msg, {
         position: "top-right",
         autoClose: 3000,
@@ -82,7 +82,7 @@ const Register = () => {
       <form className="login" onSubmit={handleSubmit}>
         <div className="form bg-dark text-white">
           <h1 className="log-title p-3">
-            <i className="fa-solid fa-user" style={{ color: "#183153" }}></i>{" "}
+            <i className="fa-solid fa-user" style={{ color: "#D3F172" }}></i>{" "}
             Register User
           </h1>
           <hr />

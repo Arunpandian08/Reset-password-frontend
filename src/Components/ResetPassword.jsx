@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Zoom, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import soundErr from "/public/livechat-129007.mp3";
 import sound from "/public/level-up-191997.mp3";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './Styles/ResetPassword.css'
 
-const ResetPassword = () => {
-    const [email, setEmail] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [conformPassword, setConformPassword] = useState("");
-    const [loading, setLoading] = useState(false); // Add loading state
-    const [responseMsg, setResponseMsg] = useState("");
 
+
+const ResetPassword = () => {
+    const [email, setEmail] = useState("");//manage state for mail field
+    const [newPassword, setNewPassword] = useState("");//manage state for new password field
+    const [conformPassword, setConformPassword] = useState("");// manage state for conform password
+    const [loading, setLoading] = useState(false); // Add loading state
+    const [tokenValid, setTokenValid] = useState(false);
+    const { token } = useParams();
     const navigate = useNavigate()
 
     const handleLogin = () => {
         navigate("/login");
     }
+
     const successNotificationSound = () => {
         const audio = new Audio(sound);
         audio.play();
@@ -28,19 +31,52 @@ const ResetPassword = () => {
         audio.play();
     };
 
-    const handleSubmit = async (e) => {
+ useEffect(() => {
+ // validate token
+const validateToken = async () => {
+    console.log("token checking");
+            try {
+                const response = await axios.get(`http://localhost:4000/user/validate-token/${token}`);
+                if (response.data.valid) {
+                    setTokenValid(true);
+                } else {
+                    toast.error("Invalid token", {
+                        position: "top-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        onOpen: errorNotificationSound,
+                        transition: Zoom,
+                    });
+                    navigate("/"); // Redirect to homepage if token is invalid
+                }
+            } catch (error) {
+                console.error("Error validating token:", error);
+            }
+        };
+
+        validateToken();
+    }, [token, navigate]);
+
+//handle submit
+const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Set loading to true when form is submitted
-        console.log("forget payloads:", email, newPassword, conformPassword);
-        const payloads = { email, newPassword, conformPassword };
+        // Set loading to true when form is submitted
+        setLoading(true);
+        const payloads = { email, newPassword, conformPassword, token };
+        console.log("Reset payloads:", email, newPassword, conformPassword, token);
         try {
             const response = await axios.post(
-                "https://reset-password-backend-x4pn.onrender.com/user/resetpassword",
+                `https://reset-password-backend-x4pn.onrender.com/user/resetpassword`,
                 payloads
             );
             toast.success(response.data.msg, {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -50,6 +86,7 @@ const ResetPassword = () => {
                 onOpen: successNotificationSound,
                 transition: Zoom,
             });
+            navigate('/')
             // Reset form fields after successful submission
             setEmail("");
             setNewPassword("");
@@ -59,7 +96,7 @@ const ResetPassword = () => {
             // Display toast message for error
             toast.error(error.response.data.msg || 'An error occurred', { // Update this line
                 position: "top-right",
-                autoClose: 4000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -73,7 +110,7 @@ const ResetPassword = () => {
             setLoading(false); // Reset loading state after request is completed
         }
 
-
+       
     };
     return (
         <div>
@@ -86,11 +123,11 @@ const ResetPassword = () => {
                 </label>
 
                 <label className='p-1'>
-                    <input className="input" type="current-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+                    <input className="input" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
                     <span>New Password</span>
                 </label>
                 <label className='p-1'>
-                    <input className="input" type="current-password" value={conformPassword} onChange={(e) => setConformPassword(e.target.value)} required />
+                    <input className="input" type="password" value={conformPassword} onChange={(e) => setConformPassword(e.target.value)} required />
                     <span>Confirm password</span>
                 </label>
                 <button className="submit" type='submit'>

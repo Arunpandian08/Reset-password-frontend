@@ -197,6 +197,7 @@
   }
   
   .accordion{
+    background: #ff145b80 !important;
     border-radius: 10px !important;
   }
   .title-content{
@@ -205,56 +206,120 @@
   .accordion-button{
     font-family: Merienda;
   }
-
-  .cta {
-    border: none;
-    background: none;
-    cursor: pointer;
+.log-title{
+  display: inline;
+  font-family: Merienda;
+  background-color: #183153;
+  padding: 2rem;
+  border-radius: 6px 10px 50px 45px;
+  color: #ffffff;
+}
+.log-title:hover {
+  cursor: pointer;
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+  .btn-conteiner {
+    display: flex;
+    justify-content: center;
+    --color-text: #ffffff;
+    --color-background: #ff135a;
+    --color-outline: #ff145b80;
+    --color-shadow: #00000080;
   }
   
-  .cta span {
-    padding-bottom: 7px;
-    letter-spacing: 4px;
-    font-size: 14px;
-    padding-right: 15px;
-    text-transform: uppercase;
+  .btn-content {
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: 1s;
+    border-radius: 100px;
+    box-shadow: 0 0 0.2em 0 var(--color-background);
   }
   
-  .cta svg {
-    transform: translateX(-8px);
-    transition: all 0.3s ease;
+  .btn-content:hover, .btn-content:focus {
+    transition: 0.5s;
+    -webkit-animation: btn-content 1s;
+    animation: btn-content 1s;
+    outline: 0.1em solid transparent;
+    outline-offset: 0.2em;
+    box-shadow: 0 0 0.4em 0 var(--color-background);
   }
   
-  .cta:hover svg {
-    transform: translateX(0);
+  .btn-content .icon-arrow {
+    transition: 0.5s;
+    margin-right: 0px;
+    transform: scale(0.6);
   }
   
-  .cta:active svg {
-    transform: scale(0.9);
+  .btn-content:hover .icon-arrow {
+    transition: 0.5s;
+    margin-right: 25px;
   }
   
-  .hover-underline-animation {
+  .icon-arrow {
+    width: 20px;
+    margin-left: 15px;
     position: relative;
-    color: #ffffff;
-    padding-bottom: 20px;
+    top: 6%;
+  }
+    
+  /* SVG */
+  #arrow-icon-one {
+    transition: 0.4s;
+    transform: translateX(-60%);
   }
   
-  .hover-underline-animation:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ffffff;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+  #arrow-icon-two {
+    transition: 0.5s;
+    transform: translateX(-30%);
   }
   
-  .cta:hover .hover-underline-animation:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  .btn-content:hover #arrow-icon-three {
+    animation: color_anim 1s infinite 0.2s;
   }
   
+  .btn-content:hover #arrow-icon-one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+  }
   
+  .btn-content:hover #arrow-icon-two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+  }
+  
+  /* SVG animations */
+  @keyframes color_anim {
+    0% {
+      fill: white;
+    }
+  
+    50% {
+      fill: var(--color-background);
+    }
+  
+    100% {
+      fill: white;
+    }
+  }
+  
+  /* Button animations */
+  @-webkit-keyframes btn-content {
+    0% {
+      outline: 0.2em solid var(--color-background);
+      outline-offset: 0;
+    }
+  }
+  
+  @keyframes btn-content {
+    0% {
+      outline: 0.2em solid var(--color-background);
+      outline-offset: 0;
+    }
+  }

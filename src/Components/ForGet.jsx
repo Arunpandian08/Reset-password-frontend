@@ -36,7 +36,7 @@ const ForGet = () => {
         const payloads = { email };
         try {
             const response = await axios.post(
-                "https://reset-password-backend-x4pn.onrender.com/user/forgetpassword",
+                "http://localhost:4000/user/forgetpassword",
                 payloads
             );
             toast.success(response.data.msg, {
@@ -77,7 +77,7 @@ const ForGet = () => {
     return (
         <div className="form-container">
             <div className="log-title">
-            <h3><i className="fa-solid fa-face-grin-beam-sweat fa-2xl p-4" style={{color: '#183153' }}></i></h3>
+            <h3><i className="fa-solid fa-face-grin-beam-sweat fa-2xl p-4" style={{color: 'orange' }}></i></h3>
                 <h3>Forgot Password</h3>
             </div>
 
