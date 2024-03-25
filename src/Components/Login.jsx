@@ -129,7 +129,7 @@ const Login = () => {
               </div>
             </div>
             <div className="forget d-flex justify-content-end">
-            <Link to="/login" onClick={handleForgetPasswordClick}>
+            <Link to="/forgetpassword" onClick={handleForgetPasswordClick}>
                 Forget Password?
             </Link>
             </div>
