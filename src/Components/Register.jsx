@@ -185,8 +185,16 @@ const Register = () => {
               </div>
             </div>
             <div className="btns d-flex justify-content-center p-4">
-              <button type='submit' className="log-btn">
-                <span>Register Now</span>
+              <button type='submit' className="log-btn" disabled={loading}>
+                <span>{loading ? <div className="loader">
+                        <p className="heading text-dark">Loading...</p>
+                        <div className="loading">
+                            <div className="load"></div>
+                            <div className="load"></div>
+                            <div className="load"></div>
+                            <div className="load"></div>
+                        </div>
+                    </div> : 'Register Now'}</span>
               </button>
             </div>
           </div>

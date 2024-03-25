@@ -4,7 +4,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import soundErr from "/public/livechat-129007.mp3";
 import sound from "/public/level-up-191997.mp3";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./Styles/forget.css";
 
 const ForGet = () => {
@@ -16,7 +16,7 @@ const ForGet = () => {
     const handleSignup = () => {
         navigate("/register");
     }
-    const handleRe = () => {
+    const handleResetpassword = () => {
         navigate("/resetpassword");
     }
     
@@ -117,14 +117,14 @@ const ForGet = () => {
             </form>
             <p className="signup-link">
                 Don't have an account?
-                <a href="#" className="signup-link link" onClick={handleSignup}>
+                <Link to='/register'className="signup-link link" onClick={handleSignup}>
                     {" "}
                     Sign up now
-                </a>
+                </Link>
             </p>
             <p className="signup-link">
             Click For Reset Password
-            <a href="#"  className="signup-link link" onClick={handleRe}>{" "}Reset New password</a>
+            <Link to='/resetpassword/:token'  className="signup-link link" onClick={handleResetpassword}>{" "}Reset New password</Link>
             </p>
         </div>
     );

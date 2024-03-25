@@ -4,7 +4,7 @@ import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import soundErr from '/public/livechat-129007.mp3'
 import sound from '/public/level-up-191997.mp3'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Styles/Login.css";
 
 const Login = () => {
@@ -129,9 +129,9 @@ const Login = () => {
               </div>
             </div>
             <div className="forget d-flex justify-content-end">
-            <a href="#" onClick={handleForgetPasswordClick}>
+            <Link to="/login" onClick={handleForgetPasswordClick}>
                 Forget Password?
-            </a>
+            </Link>
             </div>
             <div className="btns d-flex justify-content-center p-4">
               <button className="log-btn" type="submit">
@@ -140,13 +140,13 @@ const Login = () => {
             </div>
             <div className="forget d-flex justify-content-center p-2 mb-3">
               <label className="reg-txt">Don’t have an account yet?</label>
-              <a
+              <Link
                 className="reg-txt"
-                href="#"
+                to="/register"
                 onClick={handleRegisterPage}
               >
                 Sign up for free!
-              </a>
+              </Link>
             </div>
           </div>
         </div>
